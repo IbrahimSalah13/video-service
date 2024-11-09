@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des vidéos</title>
+    <style>
+        table, th, td{
+            border: 2px solid black;
+            padding: 10px;
+        }
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        a{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>Liste des vidéos</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th><th>Nom</th><th>URL</th><th>Description</th><th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="video : ${videos}">
+        <td th:text="${video.getId()}">1</td>
+        <td th:text="${video.getName()}">Nom de la vidéo</td>
+        <td th:text="${video.getUrl()}">URL de la vidéo</td>
+        <td th:text="${video.getDescription()}">Description de la vidéo</td>
+        <td>
+            <a th:href="@{/videos/edit/{id}(id=${video.getId()})}">Modifier</a> |
+            <a th:href="@{/videos/delete/{id}(id=${video.getId()})}">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br><br>
+<a href="/videos/add">Ajouter une nouvelle vidéo</a>
+</body>
+</html>
